@@ -1,6 +1,9 @@
-.idea
+.idea/*
 predictions/*
 notebooks/*
+aml_config.json
+rossmann/junk.py
+.env
 
 
 # Byte-compiled / optimized / DLL files

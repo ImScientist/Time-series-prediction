@@ -12,8 +12,8 @@ with open('requirements.txt') as f:
     requirements = f.readlines()
 
 setup(
-    name="stargazers",
-    description="Poc stargazers",
+    name="rossmann",
+    description="Rossmann kaggle competition source code",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),

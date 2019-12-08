@@ -8,9 +8,8 @@ import argparse
 if __name__ == '__main__':
     """For more information use: python train/model_01.py --help
     
-    python train/model_01.py \
+    python train/train_01.py \
         --data_dir ../data/rossmann-store-sales/source \
-        --save_dir predictions/model_01 \
         --max_pdq 4 1 2 \
         --n_stores 4
     """
@@ -21,12 +20,6 @@ if __name__ == '__main__':
                         dest='data_dir',
                         required=True,
                         help='Directory with training data')
-
-    parser.add_argument('--save_dir',
-                        type=str,
-                        dest='save_dir',
-                        required=True,
-                        help='Directory to save predictions')
 
     parser.add_argument('--max_pdq',
                         type=int,
@@ -46,18 +39,34 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    print('args \n', args)
+    cwd = os.getcwd()
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    output_dir = os.path.join(basedir, '..', 'outputs')
+    data_dir = args.data_dir
 
-    # result = model_01(data_dir=args.data_dir,
-    #                   p_range=(0, args.max_pdq[0]),
-    #                   d_range=(0, args.max_pdq[1]),
-    #                   q_range=(0, args.max_pdq[2]),
-    #                   n_stores=args.n_stores)
-    #
-    # os.makedirs(args.save_dir, exist_ok=True)
-    # result.to_csv(os.path.join(args.save_dir, 'predictions.csv'))
+    # print('sys.executable \t', sys.executable)
+    # print('cwd \t', cwd)
+    # print('basedir \t', basedir)
+    # print('folders \t', os.listdir())
+    # print('folders cwd \t', os.listdir(cwd))
 
-    with open(os.path.join(args.save_dir, 'params.json'), 'w') as f:
-        json.dump(dict((k, v) for k, v in args.__dict__.items()), f)
+    result, metrics = model_01(data_dir=args.data_dir,
+                               p_range=(0, args.max_pdq[0]),
+                               d_range=(0, args.max_pdq[1]),
+                               q_range=(0, args.max_pdq[2]),
+                               n_stores=args.n_stores)
+
+    ####################################################################
+    # keep relevant information in output directory
+    ####################################################################
+
+    os.makedirs(output_dir, exist_ok=True)
+    result.to_csv(os.path.join(output_dir, 'predictions.csv'))
+
+    with open(os.path.join(output_dir, 'params.json'), 'w') as f:
+        json.dump(dict((k, v) for k, v in args.__dict__.items()), f, indent=2)
+
+    with open(os.path.join(output_dir, 'metrics.json'), 'w') as f:
+        json.dump(metrics, f, indent=2)
 
     print('Done')
