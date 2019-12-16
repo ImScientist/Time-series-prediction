@@ -113,6 +113,9 @@ def load_and_preprocess(data_dir: str):
     df = pd.concat([df_train, df_test], sort=False).reset_index(drop=True) \
         .sort_values(by=['Store', 'Date'])
 
+    # if sales = 0 -> store is not open
+    df.loc[df['Sales'] == 0, 'Open'] = 0
+
     # ... and merge it with the stores data
     df = df.set_index(['Store']) \
         .join(df_store.set_index(['Store'])) \
