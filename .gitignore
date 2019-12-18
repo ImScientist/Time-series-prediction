@@ -1,6 +1,7 @@
 .idea/*
 predictions/*
 notebooks/*
+outputs/*
 aml_config.json
 rossmann/junk.py
 .env

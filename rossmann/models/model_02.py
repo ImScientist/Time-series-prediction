@@ -1,4 +1,3 @@
-import time
 import pandas as pd
 import datetime
 from typing import List, Dict, Tuple, Union, Any
@@ -74,8 +73,6 @@ def model_02(data_dir: str,
     # Prediction
     #
 
-    start = time.time()
-
     # We can immediately predict the 'Sales' if the store is closed.
     df['Sales'] = df[['Open', 'Sales']].apply(lambda x: 0 if x[0] == 0 else x[1], 1)
 
@@ -104,8 +101,6 @@ def model_02(data_dir: str,
 
         metrics['store'] = int(store)
         all_metrics.append(metrics)
-
-        print(f'store {store} done; \t rel. time(s):', time.time() - start)
 
     result = df[df['Id'].notnull()][['Id', 'Sales']]
     result['Id'] = result['Id'].astype(int)

@@ -2,6 +2,7 @@
 """
 import os
 import json
+import time
 from rossmann.models.model_01 import model_01
 import argparse
 
@@ -50,21 +51,33 @@ if __name__ == '__main__':
     # print('folders \t', os.listdir())
     # print('folders cwd \t', os.listdir(cwd))
 
+    start = time.time()
+
     result, metrics = model_01(data_dir=args.data_dir,
                                p_range=(0, args.max_pdq[0]),
                                d_range=(0, args.max_pdq[1]),
                                q_range=(0, args.max_pdq[2]),
                                n_stores=args.n_stores)
 
+    end = time.time()
+
     ####################################################################
     # keep relevant information in output directory
     ####################################################################
+
+    params = {
+        'model': {
+            'name': 'ARIMA'
+        },
+        'training': dict((k, v) for k, v in args.__dict__.items())
+    }
+    params['training']['duration'] = end - start
 
     os.makedirs(output_dir, exist_ok=True)
     result.to_csv(os.path.join(output_dir, 'predictions.csv'))
 
     with open(os.path.join(output_dir, 'params.json'), 'w') as f:
-        json.dump(dict((k, v) for k, v in args.__dict__.items()), f, indent=2)
+        json.dump(params, f, indent=2)
 
     with open(os.path.join(output_dir, 'metrics.json'), 'w') as f:
         json.dump(metrics, f, indent=2)

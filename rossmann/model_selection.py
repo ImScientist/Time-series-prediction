@@ -105,7 +105,8 @@ def get_best_model_and_predict_01(df: pd.DataFrame,
 
     mod = sm.tsa.statespace.SARIMAX(endog=tt[tt['Date'] <= t2][endogen_var],
                                     exog=tt[tt['Date'] <= t2][exogen_vars],
-                                    order=metric_values[0]['pdq'])
+                                    order=metric_values[0]['pdq'],
+                                    trend='c')
     fit_res = mod.fit(disp=False)
 
     prediction = fit_res.forecast(steps=len(test),
