@@ -1,4 +1,5 @@
-""" Train our first model.
+""" Train the third model.
+- xgboost (baseline)
 """
 import os
 import json
@@ -48,7 +49,7 @@ if __name__ == '__main__':
     params = {
         "objective": "reg:squarederror",
         "booster": "gbtree",
-        "eta": 0.05,
+        "eta": 0.03,
         "max_depth": 10,
         "subsample": 0.8,
         "colsample_bytree": 0.7,

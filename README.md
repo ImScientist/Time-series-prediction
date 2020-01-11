@@ -55,6 +55,12 @@ Service.
     docker push $AML_CONTAINER_REGISTRY_SERVER/rossmann_img:0.1
     ```
 
+## Training 
+    
+Look at [this](notebooks/AML_training_reforged.ipynb) notebook for more
+information how to use Azure ML Service for model deployment.
+
+
 ## Models 
 
 ### Multiple SARIMAX models
@@ -74,9 +80,13 @@ We fit an individual SARIMAX model for every store. Some relevant steps:
 - Hyperparameter selection. For every model pick the best (p,d,q) values
   from a predefined grid. For every combination we train a model in the
   interval \[2013-01-01 : 2014-12-31\] and use the prediction for the
-  interval \[2015-01-01 : 2015-07-31\] to select the best (p,d,q). At the
-  moment, we use the mean absolute error metric but code can be easily
-  modified to use some information criteria or another metric.
+  interval \[2015-01-01 : 2015-07-31\] to select the best (p,d,q). At
+  the moment, we use the mean absolute error metric but code can be
+  easily modified to use some information criteria or another metric.
+  <br> 
+  <br> 
+  <img width="800" alt="teaser" src="timeseries.png">
+
   
 ### xgboost
 Since this approach is extremely popular, I have added it. Variations of

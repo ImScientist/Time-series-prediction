@@ -1,4 +1,5 @@
-""" Train our first model.
+""" Train the first model.
+- ARIMA
 """
 import os
 import json

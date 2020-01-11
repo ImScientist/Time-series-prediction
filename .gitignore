@@ -6,6 +6,8 @@ aml_config.json
 rossmann/junk.py
 .env
 
+!notebooks/AML_training_reforged.ipynb
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
