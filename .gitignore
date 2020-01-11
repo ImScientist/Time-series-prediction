@@ -1,12 +1,13 @@
 .idea/*
 predictions/*
-notebooks/*
+# notebooks/*
 outputs/*
 aml_config.json
 rossmann/junk.py
 .env
 
-!notebooks/AML_training_reforged.ipynb
+notebooks/AML_training.ipynb
+notebooks/test_apis.ipynb
 
 
 # Byte-compiled / optimized / DLL files
