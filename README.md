@@ -9,6 +9,11 @@ Service.
 
 ## Setup the Docker image 
 
+- Create a `.env` file with the same content as `.env.sample`.
+  ```bash
+  source .env
+  ```
+
 - Build a docker image:
 
     ```bash
