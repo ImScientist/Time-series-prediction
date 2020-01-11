@@ -1,4 +1,6 @@
-""" Train our first model.
+""" Train the second model.
+- ARIMA (again)
+- Eliminate the Christmas effects by adding new features.
 """
 import os
 import json
