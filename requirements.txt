@@ -51,7 +51,7 @@ ptyprocess==0.6.0
 pyasn1==0.4.8
 pycparser==2.19
 Pygments==2.5.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 pymc3==3.7
 pyOpenSSL==19.1.0
 pyparsing==2.4.5
